@@ -9,10 +9,7 @@ function Navbar() {
             <a href="/">Inicio</a>
           </li>
           <li className="nav-item">
-            <a href="/acerca">Acerca de</a>
-          </li>
-          <li className="nav-item">
-            <a href="/servicios">Servicios</a>
+            <a href="/add-product">Agregar Producto</a>
           </li>
           <li className="nav-item">
             <a href="/product-list">Lista de productos</a>

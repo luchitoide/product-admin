@@ -35,7 +35,7 @@ function ProductList() {
               <td>{product.id}</td>
               <td>{product.title}</td>
               <td>{product.description}</td>
-              <td className="excel-table-column">
+              <td className="no-border">
                 <button className="ver-mas-button">Ver más</button>
               </td>
             </tr>

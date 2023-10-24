@@ -1,3 +1,12 @@
+body {
+  margin: 0;
+}
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+}
+
+
 .navbar {
     background-color: #333;
     color: #fff;
