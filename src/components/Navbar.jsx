@@ -1,4 +1,5 @@
 import React from "react";
+import { Outlet } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -14,11 +15,11 @@ function Navbar() {
           <li className="nav-item">
             <a href="/product-detail">Detalle producto</a>
           </li>
-          <li className="nav-item">
-            <a href="/product-list">Lista de productos</a>
-          </li>
         </ul>
       </nav>
+      <div id="detail">
+        <Outlet />
+      </div>
     </>
   );
 }

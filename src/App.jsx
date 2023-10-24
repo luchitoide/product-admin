@@ -1,32 +1,46 @@
 import "./App.css";
 import React, { useEffect, useState , createContext} from 'react';
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import Navbar from "./components/Navbar";
 import HomePage from "./pages/Home.jsx";
 import ProductList from "./pages/ProductList";
 import AddProduct from "./pages/AddProduct";
 import ErrorPage from "./pages/ErrorPage";
 import DetailProduct from "./pages/DetailProduct";
 import axios from 'axios';
+import Item from "./routes/item";
 
 export const ProductContext = createContext();
 
 const router = createBrowserRouter([
   {
-    path: "/",
-    element: <HomePage />,
+
+    element: <Navbar />,
     errorElement: <ErrorPage />,
+    children: [
+      {
+        path: "/",
+        element: <HomePage />,
+      },
+      {
+        path: "/product-list",
+        element: <ProductList />,
+      },
+      {
+        path: "/add-product",
+        element: <AddProduct />,
+      },
+      {
+        path: "/product-detail",
+        element: <DetailProduct />,
+      },
+      
+    ],
+    
   },
   {
-    path: "/product-list",
-    element: <ProductList />,
-  },
-  {
-    path: "/add-product",
-    element: <AddProduct />,
-  },
-  {
-    path: "/product-detail",
-    element: <DetailProduct />,
+    path: "item/:itemId",
+    element: <Item />,
   },
 ]);
 

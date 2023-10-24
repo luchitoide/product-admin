@@ -18,7 +18,7 @@ function AddProduct() {
     <div className="add-product-container">
       <h2>Producto</h2>
       <div className="add-product-form">
-        <form onSubmit={handleSubmit(onSubmit)} >
+        <form onSubmit={handleSubmit(onSubmit)} className="add-form" >
           <div className="form-group">
             <label htmlFor="nombre">Nombre </label>
             <Controller
@@ -26,7 +26,7 @@ function AddProduct() {
               control={control}
               defaultValue=""
               rules={{ required: "Este campo es obligatorio" }}
-              render={({ field }) => <input {...field} type="text" />}
+              render={({ field }) => <input {...field}className="form-block" type="text" />}
             />
             {errors.nombre && (
               <span className="error-message">{errors.nombre.message}</span>
@@ -40,7 +40,7 @@ function AddProduct() {
               control={control}
               defaultValue=""
               rules={{ required: "Este campo es obligatorio" }}
-              render={({ field }) => <textarea {...field} rows="4" />}
+              render={({ field }) => <textarea {...field}className="form-block" rows="4" />}
             />
             {errors.descripcion && (
               <span className="error-message">
@@ -48,11 +48,11 @@ function AddProduct() {
               </span>
             )}
           </div>
-          <div>
-            <button type="submit" className="submit-button">
+          <button type="submit" className="submit-button">
               Guardar
             </button>
-          </div>
+            
+
         </form>
       </div>
     </div>
