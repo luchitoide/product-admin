@@ -56,7 +56,7 @@
   margin: 20px 20dvw;
 }
 
-.product-container >img {
+.product-container > img {
   width: 100%;
   border-radius: 20px;
 }
@@ -115,6 +115,10 @@
   border-radius: 8px;
   margin: auto;
   padding: 8px;
+}
+
+.detail-button:hover {
+  background-color: #8d9c1d;
 }
 
 /* Estiliza los elementos individualmente según sea necesario */

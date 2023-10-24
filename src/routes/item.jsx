@@ -18,6 +18,8 @@ function Item() {
   const searchParams = new URLSearchParams(location.search);
   const quantity = searchParams.get("quantity");
 
+  const totalPrice = (quantity * product.price * 1.19).toFixed(2);
+
   if (!product) {
     // Manejar el caso en el que el producto no se encuentre
     return <div>No se ha encontrado el producto.</div>;
@@ -42,7 +44,6 @@ function Item() {
           <span>Medellín, Colombia</span>
           <span className="font-dark">Ingresa tu dirección</span>
           <LocationOnOutlinedIcon />
-          {/* Añade el icono que desees */}
         </div>
       </div>
 
@@ -58,7 +59,7 @@ function Item() {
             <p>{product.description}</p>
 
             <div className="detail-bottom">
-            <p className="font-dark">$ {quantity*product.price*1.19}</p>
+            <p className="font-dark">$ {totalPrice}</p>
             <button type="submit" className="detail-button">
               Agregar al carrito
             </button>

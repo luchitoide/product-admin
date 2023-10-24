@@ -1,12 +1,33 @@
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { useForm, Controller } from "react-hook-form";
 import { ProductContext } from "../App";
 import ProductList from "./ProductList";
+
 
 function DetailProduct() {
   const products = useContext(ProductContext);
   const [cart, setCart] = useState([]);
   const { control, handleSubmit, setValue } = useForm();
+
+  const saveCart = (cart) => {
+    localStorage.setItem('cart', JSON.stringify(cart));
+    console.log('Carrito guardado')
+  };
+
+  const loadCart = () => {
+    const cart = localStorage.getItem('cart');
+    if (cart) {
+      return JSON.parse(cart);
+    } else {
+      return [];
+    }
+  };
+
+  useEffect(() => {
+    // Carga el estado de cart desde localStorage
+    const cart = loadCart();
+    setCart(cart);
+  }, []);
 
   const onSubmit = (data) => {
     // Encuentra el producto existente en el carrito según el título seleccionado
@@ -48,6 +69,7 @@ function DetailProduct() {
         ]);
       }
     }
+    saveCart(cart);
   };
 
   return (
