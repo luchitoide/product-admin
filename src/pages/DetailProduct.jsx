@@ -5,6 +5,15 @@ import ProductList from "./ProductList";
 
 
 function DetailProduct() {
+  const loadCart = () => {
+    const cart = localStorage.getItem('cart');
+    if (cart) {
+      return JSON.parse(cart);
+    } else {
+      return [];
+    }
+  };
+  
   const products = useContext(ProductContext);
   const [cart, setCart] = useState([]);
   const { control, handleSubmit, setValue } = useForm();
@@ -14,14 +23,6 @@ function DetailProduct() {
     console.log('Carrito guardado')
   };
 
-  const loadCart = () => {
-    const cart = localStorage.getItem('cart');
-    if (cart) {
-      return JSON.parse(cart);
-    } else {
-      return [];
-    }
-  };
 
   useEffect(() => {
     // Carga el estado de cart desde localStorage
@@ -29,7 +30,10 @@ function DetailProduct() {
     setCart(cart);
   }, []);
 
+  
+
   const onSubmit = (data) => {
+
     // Encuentra el producto existente en el carrito según el título seleccionado
     const existingProduct = cart.find((item) => item.title === data.product);
 
@@ -39,14 +43,18 @@ function DetailProduct() {
 
       // Actualiza la cantidad en la copia
       updatedProduct.quantity = data.quantity;
+      const updatedCart = [...cart];
+      const index = cart.findIndex((item) => item.title === data.product);
+      updatedCart[index] = updatedProduct;
 
       // Encuentra el índice del producto existente en cart
-      const index = cart.findIndex((item) => item.title === data.product);
+      
+      
 
       if (index !== -1) {
         // Actualiza el producto en la copia de cart
-        const updatedCart = [...cart];
-        updatedCart[index] = updatedProduct;
+        
+        saveCart(updatedCart);
 
         // Actualiza el estado de cart con la copia actualizada
         setCart(updatedCart);
@@ -58,18 +66,22 @@ function DetailProduct() {
       );
 
       if (selectedProduct) {
-        setCart([
+        const updatedCart = [
           ...cart,
           {
             id: selectedProduct.id,
             title: selectedProduct.title,
             description: selectedProduct.description,
             quantity: data.quantity,
-          },
-        ]);
+          }
+        ];
+        saveCart(updatedCart);
+
+        // Actualiza el estado de cart con la copia actualizada
+        setCart(updatedCart);
       }
     }
-    saveCart(cart);
+    
   };
 
   return (
